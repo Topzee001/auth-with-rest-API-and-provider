@@ -1,6 +1,8 @@
+import 'package:auth_restapi_provider/Styles/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'Screens/home.dart';
+import 'splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,11 +17,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        appBarTheme: const AppBarTheme(backgroundColor: primaryColor),
         scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: const SplashScreen(),
+      //MyHomePage(),
     );
   }
 }
