@@ -28,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         mini: true,
         onPressed: () {},
-        tooltip: 'Increment',
+        tooltip: 'Add a product',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
