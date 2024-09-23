@@ -20,4 +20,9 @@ class PageNavigator {
     Navigator.pushAndRemoveUntil(
         ctx!, MaterialPageRoute(builder: (context) => page!), (route) => false);
   }
+
+  void nextPageOnlyAnim({Widget? page}) {
+    Navigator.pushAndRemoveUntil(ctx!,
+        CupertinoPageRoute(builder: (context) => page!), (route) => false);
+  }
 }

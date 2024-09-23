@@ -60,7 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: const Text('Register Instead'),
                     onTap: () {
                       PageNavigator(ctx: context)
-                          .nextPage(page: const RegisterPage());
+                          .nextPageOnlyAnim(page: const RegisterPage());
                     },
                   )
                 ],

@@ -69,7 +69,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   GestureDetector(
                     child: Text('Login Instead'),
                     onTap: () {
-                      PageNavigator(ctx: context).nextPage(page: LoginPage());
+                      PageNavigator(ctx: context)
+                          .nextPageOnlyAnim(page: LoginPage());
                     },
                   ),
                 ],
