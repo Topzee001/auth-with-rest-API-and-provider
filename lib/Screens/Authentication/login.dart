@@ -1,7 +1,10 @@
+import 'package:auth_restapi_provider/Provider/AuthProvider/auth_provider.dart';
+import 'package:auth_restapi_provider/Utils/message_dialog.dart';
 import 'package:auth_restapi_provider/Utils/routers.dart';
 import 'package:auth_restapi_provider/Widgets/button.dart';
 import 'package:auth_restapi_provider/Widgets/text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'register.dart';
 
@@ -47,11 +50,36 @@ class _LoginPageState extends State<LoginPage> {
                     controller: passwordController,
                     hint: 'Enter your password',
                   ),
-                  customButton(
-                    text: 'Login',
-                    tap: () {},
-                    context: context,
-                    status: false,
+                  Consumer<AuthenticationProvider>(
+                    builder: (context, auth, child) {
+                      WidgetsBinding.instance!.addPostFrameCallback((_) {
+                        if (auth.resMessage != '') {
+                          errorMessage(auth.resMessage, context);
+
+                          auth.clear();
+                        }
+                      });
+                      return customButton(
+                        text: 'Login',
+                        tap: () {
+                          if (emailController.text.isEmpty ||
+                              passwordController.text.isEmpty) {
+                            errorMessage(
+                              //   message:
+                              "All fields are required",
+                              // context:
+                              context,
+                            );
+                          } else {
+                            auth.loginUser(
+                                email: emailController.text.trim(),
+                                password: passwordController.text.trim());
+                          }
+                        },
+                        context: context,
+                        status: auth.isLoading,
+                      );
+                    },
                   ),
                   const SizedBox(
                     height: 10,

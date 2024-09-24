@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../Styles/colors.dart';
 
-void successDialog(String? message, BuildContext context) {
+void successMessage(String? message, BuildContext context) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(
@@ -14,9 +14,10 @@ void successDialog(String? message, BuildContext context) {
   );
 }
 
-void errorDialog(String? message, BuildContext context) {
+void errorMessage(String? message, BuildContext context) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
+      //padding: const EdgeInsets.all(8),
       content: Text(
         message!,
         style: const TextStyle(color: white),
