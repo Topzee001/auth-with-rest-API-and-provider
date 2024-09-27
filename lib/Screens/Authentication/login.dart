@@ -72,6 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                             );
                           } else {
                             auth.loginUser(
+                                context: context,
                                 email: emailController.text.trim(),
                                 password: passwordController.text.trim());
                           }
