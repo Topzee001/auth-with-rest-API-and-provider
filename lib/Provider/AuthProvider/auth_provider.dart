@@ -139,8 +139,8 @@ class AuthenticationProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    // String url = "https://reqres.in/api/login";
-    String url = "http://52.201.161.111:5000/login";
+    // String url = "https://reqres.in/api/register";
+    String url = "http://52.201.161.111:5000/register";
 
     final body = {
       "firstName": firstName,
@@ -154,7 +154,7 @@ class AuthenticationProvider extends ChangeNotifier {
     try {
       Response response = await http.post(
         Uri.parse(url),
-        // headers: {"Content-Type": "application/json"},
+        headers: {"Content-Type": "application/json"},
         body: json.encode(body),
       );
 
@@ -165,7 +165,7 @@ class AuthenticationProvider extends ChangeNotifier {
         try {
           final res = json.decode(response.body);
           print('Response Data: $res');
-          _resMessage = 'Login successful!';
+          _resMessage = 'Register successful!';
         } catch (e) {
           print('Error parsing JSON: $e');
           _resMessage = 'Invalid response format';
@@ -173,7 +173,7 @@ class AuthenticationProvider extends ChangeNotifier {
       } else {
         try {
           final res = json.decode(response.body);
-          // _resMessage = res['error'] ?? 'An error occurred';
+          //_resMessage = res['error'] ?? 'An error occurred';
           _resMessage = res['message'];
         } catch (e) {
           print('Error parsing error response: $e');
@@ -199,7 +199,7 @@ class AuthenticationProvider extends ChangeNotifier {
     _isLoading = true;
     notifyListeners();
 
-    // String url = "https://reqres.in/api/login";
+    //String url = "https://reqres.in/api/login";
     String url = "http://52.201.161.111:5000/login";
 
     final body = {
@@ -212,7 +212,7 @@ class AuthenticationProvider extends ChangeNotifier {
     try {
       Response response = await http.post(
         Uri.parse(url),
-        // headers: {"Content-Type": "application/json"},
+        headers: {"Content-Type": "application/json"},
         body: json.encode(body),
       );
 
@@ -227,12 +227,13 @@ class AuthenticationProvider extends ChangeNotifier {
         } catch (e) {
           print('Error parsing JSON: $e');
           _resMessage = 'Invalid response format';
+          //password
         }
       } else {
         try {
           final res = json.decode(response.body);
-          // _resMessage = res['error'] ?? 'An error occurred';
-          _resMessage = res['message'];
+          _resMessage = res['error'] ?? 'An error occurred';
+          // _resMessage = res['message'];
         } catch (e) {
           print('Error parsing error response: $e');
           _resMessage = 'An error occurred: ${response.statusCode}';
