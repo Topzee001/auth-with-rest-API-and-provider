@@ -22,13 +22,12 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController lastNameController = TextEditingController();
 
   @override
-  void initState() {
-    // TODO: implement initState
-    emailController.clear();
-    passwordController.clear();
-    firstNameController.clear();
-    lastNameController.clear();
-    super.initState();
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    super.dispose();
   }
 
   @override
@@ -93,6 +92,10 @@ class _RegisterPageState extends State<RegisterPage> {
                               lastName: lastNameController.text.trim(),
                               email: emailController.text.trim(),
                               password: passwordController.text.trim(),
+                              firstNameController: firstNameController,
+                              lastNameController: lastNameController,
+                              emailController: emailController,
+                              passwordController: passwordController,
                             );
                           }
                         },

@@ -134,6 +134,10 @@ class AuthenticationProvider extends ChangeNotifier {
     required String lastName,
     required String email,
     required String password,
+    required TextEditingController emailController,
+    required TextEditingController passwordController,
+    required TextEditingController firstNameController,
+    required TextEditingController lastNameController,
     BuildContext? context,
   }) async {
     _isLoading = true;
@@ -166,6 +170,10 @@ class AuthenticationProvider extends ChangeNotifier {
           final res = json.decode(response.body);
           print('Response Data: $res');
           _resMessage = 'Register successful!';
+          firstNameController.clear();
+          lastNameController.clear();
+          emailController.clear();
+          passwordController.clear();
         } catch (e) {
           print('Error parsing JSON: $e');
           _resMessage = 'Invalid response format';
@@ -194,6 +202,8 @@ class AuthenticationProvider extends ChangeNotifier {
   void loginUser({
     required String email,
     required String password,
+    required TextEditingController emailController,
+    required TextEditingController passwordController,
     BuildContext? context,
   }) async {
     _isLoading = true;
@@ -224,6 +234,8 @@ class AuthenticationProvider extends ChangeNotifier {
           final res = json.decode(response.body);
           print('Response Data: $res');
           _resMessage = 'Login successful!';
+          emailController.clear();
+          passwordController.clear();
         } catch (e) {
           print('Error parsing JSON: $e');
           _resMessage = 'Invalid response format';
@@ -232,8 +244,8 @@ class AuthenticationProvider extends ChangeNotifier {
       } else {
         try {
           final res = json.decode(response.body);
-          _resMessage = res['error'] ?? 'An error occurred';
-          // _resMessage = res['message'];
+          //_resMessage = res['error'] ?? 'An error occurred';
+          _resMessage = res['message'];
         } catch (e) {
           print('Error parsing error response: $e');
           _resMessage = 'An error occurred: ${response.statusCode}';

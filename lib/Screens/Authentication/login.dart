@@ -22,8 +22,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void dispose() {
     // TODO: implement dispose
-    emailController.clear();
-    passwordController.clear();
+    emailController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -72,9 +72,12 @@ class _LoginPageState extends State<LoginPage> {
                             );
                           } else {
                             auth.loginUser(
-                                context: context,
-                                email: emailController.text.trim(),
-                                password: passwordController.text.trim());
+                              context: context,
+                              email: emailController.text.trim(),
+                              password: passwordController.text.trim(),
+                              emailController: emailController,
+                              passwordController: passwordController,
+                            );
                           }
                         },
                         context: context,
